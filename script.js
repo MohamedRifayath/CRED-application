@@ -28,7 +28,7 @@ function showData() {
         peopleList = [];
     }
     else {
-        peopleList = JSON.parse(localStorage.getItem("peoplelist"));
+        peopleList = JSON.parse(localStorage.getItem("PeopleList"));
     }
 
     var html = "";
@@ -38,12 +38,13 @@ function showData() {
         html += "<td>" + element.dob + "</td>";
         html += "<td>" + element.age + "</td>";
         html += "<td>" + element.number + "</td>";
-        html +='<td> <button onclick="deleteData(' + index + ')" class="btn-delete">Delete</button><button onclick = "editData(' + index + ')" class="btn-edit">Edit</button> </td >';
+        html +='<td class="btn-td"> <button onclick="deleteData(' + index + ')" class="btn-delete">Delete</button><button onclick = "editData(' + index + ')" class="btn-edit">Edit</button> </td >';
         html += "</tr>";
     });
     document.querySelector("#overAll tbody").innerHTML=html;
 }
-   //document.onload=showData();
+
+document.onload=showData();
 
 function submitFunction() {
     if (validation() == true) {
@@ -51,13 +52,12 @@ function submitFunction() {
         var age = document.getElementById("age").value;
         var dob = document.getElementById("dob").value;
         var number = document.getElementById("number").value;
-        console.log(name)
         var peopleList;
         if (localStorage.getItem("PeopleList") == null) {
             peopleList = [];
         }
         else {
-            peopleList = JSON.parse(localStorage.getItem("peoplelist"));
+            peopleList = JSON.parse(localStorage.getItem("PeopleList"));
         }
         peopleList.push({
             name: name,
@@ -65,8 +65,7 @@ function submitFunction() {
             dob: dob,
             number: number,
         });
-        console.log(peopleList);
-        localStorage.setItem("peopleList",JSON.stringify(peopleList));
+        localStorage.setItem("PeopleList",JSON.stringify(peopleList));
         showData();
         document.getElementById("name").value="";
         document.getElementById("age").value="";
