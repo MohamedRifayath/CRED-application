@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="script.js"></script>
     <div class="container" id="container">
         <div class="btn-add">
             <button id="btn-add" onclick="addFunction()">+ADD</button>
         </div>
-       <table width="100%" class="table" id="overAll">
+       <table class="table" id="overAll">
         <thead>
             <th>Name</th>
             <th>D.O.B</th>
@@ -20,7 +19,9 @@
             <th>Number</th>
             <th  width="20%">Action</th>
         </thead>
-         <tbody></tbody>
+         <tbody>
+            <!-- Rows will added dynamically using JS -->
+         </tbody>
        </table>
     </div>
     <div class="card" id="card">
@@ -41,8 +42,9 @@
             <label for="Number">Number</label>
             <input type="tel" id="number" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
            </div>
+           <button type="submit" id="btn-submit" onclick="submitFunction()">Sumbit</button>
         </form>
-        <button type="submit" id="btn-submit" onclick="submitFunction()">Sumbit</button>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
