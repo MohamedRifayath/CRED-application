@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="script.js"></script>
+    <div class="container" id="container">
+        <div class="btn-add">
+            <button id="btn-add" onclick="addFunction()">+ADD</button>
+        </div>
+       <table width="100%" class="table" id="overAll">
+        <thead>
+            <th>Name</th>
+            <th>D.O.B</th>
+            <th width="10%">Age</th>
+            <th>Number</th>
+            <th  width="20%">Action</th>
+        </thead>
+         <tbody></tbody>
+       </table>
+    </div>
+    <div class="card" id="card">
+        <form action="">
+           <div class="formgroup">
+            <label for="Name">Name</label>
+            <input type="text" id="name" placeholder="Enter Your Name">
+           </div>
+           <div class="formgroup">
+            <label for="D.O.B">D.O.B</label>
+            <input type="date" id="dob" placeholder="Enter Your D.O.B">
+           </div>
+           <div class="formgroup">
+            <label for="Age">Age</label>
+            <input type="number" id="age" min="1">
+           </div>
+           <div class="formgroup">
+            <label for="Number">Number</label>
+            <input type="tel" id="number" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
+           </div>
+        </form>
+        <button type="submit" id="btn-submit" onclick="submitFunction()">Sumbit</button>
+    </div>
+</body>
+</html>
