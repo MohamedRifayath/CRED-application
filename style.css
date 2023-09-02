@@ -27,7 +27,7 @@ button{
     width:150px;
     background-color:rgba(50, 121, 187, 0.841);
     border:none;
-    border-radius:2px;
+    border-radius:3px;
     margin-bottom: 25px;
     color: whitesmoke;
 }
@@ -41,7 +41,7 @@ table{
 }
 
 table thead, table thead th{
-    background-color: aqua;
+    background-color: rgb(153, 181, 181);
     padding: 10px;
 }
 
@@ -89,18 +89,35 @@ form input{
 }
 
 form button{
+
+
     display: block;
 }
-
+#btn-add{
+    position: absolute;
+    left:190px;
+    top:100px;
+}
 #btn-submit{
     margin: auto;
+    display:block;
 }
-
+#update{
+    margin: auto;
+    display:none;
+    background-color: rgb(41, 57, 52);
+}
 label{
     font-size:16px;
 }
 
-.btn-edit, .btn-delete{
+.btn-edit{
     width: auto;
     padding: 10px;
+    background-color: rgb(44, 130, 102);
+}
+.btn-delete{
+    width: auto;
+    padding: 10px;
+    background-color: rgb(151, 59, 59);
 }
