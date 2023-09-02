@@ -16,7 +16,7 @@ function validation() {
         alert("D.O.B is required");
         return false;
     }
-    if (number == "") {
+    if (number =="") {
         alert("Number is required");
         return false;
     }
@@ -24,7 +24,7 @@ function validation() {
 }
 function showData() {
     var peopleList;
-    if (localStorage.getItem("PeopleList") ==null) {
+    if (localStorage.getItem("PeopleList") == null) {
         peopleList = [];
     }
     else {
@@ -32,20 +32,20 @@ function showData() {
     }
 
     var html = "";
-    peopleList.forEach(function (element, index){
+    peopleList.forEach(function (element, index) {
         html += "<tr>";
         html += "<td>" + element.name + "</td>";
         html += "<td>" + element.dob + "</td>";
         html += "<td>" + element.age + "</td>";
         html += "<td>" + element.number + "</td>";
-        html +='<td class="btn-td"> <button onclick="deleteData(' + index + ')" class="btn-delete">Delete</button><button onclick = "editData(' + index + ')" class="btn-edit">Edit</button> </td >';
+        html += '<td class="btn-td"> <button onclick="deleteData(' + index + ')" class="btn-delete">Delete</button><button onclick = "editData(' + index + ')" class="btn-edit">Edit</button> </td >';
         html += "</tr>";
     });
-    document.querySelector("#overAll tbody").innerHTML=html;
+    document.querySelector("#overAll tbody").innerHTML = html;
 }
 
-document.onload=showData();
-
+document.onload = showData();
+//submitbutton
 function submitFunction() {
     if (validation() == true) {
         var name = document.getElementById("name").value;
@@ -65,15 +65,64 @@ function submitFunction() {
             dob: dob,
             number: number,
         });
-        localStorage.setItem("PeopleList",JSON.stringify(peopleList));
+        localStorage.setItem("PeopleList", JSON.stringify(peopleList));
         showData();
-        document.getElementById("name").value="";
-        document.getElementById("age").value="";
-        document.getElementById("dob").value="";
-        document.getElementById("number").value="";
+        document.getElementById("name").value = "";
+        document.getElementById("age").value = "";
+        document.getElementById("dob").value = "";
+        document.getElementById("number").value = "";
     }
-    document.getElementById("card").style.opacity="0"
-    document.getElementById("card").style.pointerEvents="none"
+    document.getElementById("card").style.opacity = "0"
+    document.getElementById("card").style.pointerEvents = "none"
+}
+//deletebutton
+function deleteData(index) {
+    var peopleList;
+    if (localStorage.getItem("PeopleList") == null) {
+        peopleList = [];
+    }
+    else {
+        peopleList = JSON.parse(localStorage.getItem("PeopleList"));
+    }
+    peopleList.splice(index, 1);
+    localStorage.setItem("PeopleList", JSON.stringify(peopleList));
+    showData();
+}
+//editbutton
+function editData(index) {
+    document.getElementById('card').style.opacity = "1";
+    document.getElementById('card').style.pointerEvents = "auto";
+    document.getElementById('btn-submit').style.display = "none";
+    document.getElementById('update').style.display = "block";
+
+    var peopleList;
+    if (localStorage.getItem("peopleList") == null) {
+        peopleList = [];
+    }
+    else {
+        peopleList = JSON.parse(localStorage.getItem("peopleList"));
+    }
+    document.getElementById("name").value = peopleList[index].name;
+    document.getElementById("dob").value = peopleList[index].dob;
+    document.getElementById("age").value = peopleList[index].age;
+    document.getElementById("number").value = peopleList[index].number;
+
+    document.querySelector("#update").onclick = function () {
+        if (validation() == true) {
+            peopleList[index].name = document.getElementById('name').value;
+            peopleList[index].age = document.getElementById('age').value;
+            peopleList[index].dob = document.getElementById('dob').value;
+            peopleList[index].number = document.getElementById('number').value;
+
+            localStorage.setItem("peopleList", JSON.stringify(peopleList));
+            showData();
+
+            document.getElementById("name").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("dob").value = "";
+            document.getElementById("number").value = "";
+        }
+    }
 }
 
 //addbutton
