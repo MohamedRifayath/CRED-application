@@ -45,7 +45,10 @@ function showData() {
 }
 
 document.onload = showData();
-//submitbutton
+
+
+// ----------------submit button function------------
+
 function submitFunction() {
     if (validation() == true) {
         var name = document.getElementById("name").value;
@@ -75,7 +78,10 @@ function submitFunction() {
     document.getElementById("card").style.opacity = "0"
     document.getElementById("card").style.pointerEvents = "none"
 }
-//deletebutton
+
+
+// ----------------delete button function---------
+
 function deleteData(index) {
     var peopleList;
     if (localStorage.getItem("PeopleList") == null) {
@@ -88,33 +94,44 @@ function deleteData(index) {
     localStorage.setItem("PeopleList", JSON.stringify(peopleList));
     showData();
 }
-//editbutton
+
+
+//-----------------Edit button function--------------
+
 function editData(index) {
+
     document.getElementById('card').style.opacity = "1";
     document.getElementById('card').style.pointerEvents = "auto";
     document.getElementById('btn-submit').style.display = "none";
-    document.getElementById('update').style.display = "block";
+    document.getElementById('btn-update').style.display = "block";
 
     var peopleList;
-    if (localStorage.getItem("peopleList") == null) {
+    if (localStorage.getItem("PeopleList") == null) {
         peopleList = [];
     }
     else {
-        peopleList = JSON.parse(localStorage.getItem("peopleList"));
+        peopleList = JSON.parse(localStorage.getItem("PeopleList"));
     }
+    console.log("people list retrieved")
+    console.log(peopleList[index].name)
     document.getElementById("name").value = peopleList[index].name;
     document.getElementById("dob").value = peopleList[index].dob;
     document.getElementById("age").value = peopleList[index].age;
     document.getElementById("number").value = peopleList[index].number;
 
-    document.querySelector("#update").onclick = function () {
+    console.log(peopleList[index].name);
+    console.log(peopleList[index].dob);
+    console.log(peopleList[index].age);
+    console.log(peopleList[index].number);
+
+    document.querySelector("#btn-update").onclick = function () {
         if (validation() == true) {
             peopleList[index].name = document.getElementById('name').value;
             peopleList[index].age = document.getElementById('age').value;
             peopleList[index].dob = document.getElementById('dob').value;
             peopleList[index].number = document.getElementById('number').value;
 
-            localStorage.setItem("peopleList", JSON.stringify(peopleList));
+            localStorage.setItem("PeopleList", JSON.stringify(peopleList));
             showData();
 
             document.getElementById("name").value = "";
@@ -125,7 +142,9 @@ function editData(index) {
     }
 }
 
-//addbutton
+
+//---------------Add button function------------
+
 function addFunction() {
     document.getElementById('card').style.opacity = "1";
     document.getElementById('card').style.pointerEvents = "auto";
